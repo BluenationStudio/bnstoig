@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>BlueDuck</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="src/styles/index.css">
+</head>
+
+<body>
+
+  <div id="yd-package-loader" style="display: none;">
+    <div class="container">
+      <div class="level yd-container-level">
+        <div class="loader" style="height: 3.5em; width: 3.5em; margin-bottom: 5%"></div>
+        <div class="content">
+          <h2 class="has-text-centered" style="font-weight: 900;font-size: 36px;">
+            Initializing...
+          </h2>
+          <p class="has-text-centered" style="font-size: 20px;">
+            It usually takes around a couple of seconds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="yd-welcome-screen" style="display: none">
+    <div style="max-width: 400px" class="container">
+      <div class="level yd-container-level">
+        <a class="button is-black yd-start-now-btn is-medium">Zapni</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="yd-inst-login" style="display: none;">
+    <div style="max-width: 400px" class="main container">
+      <div class="level">
+        <div class="content">
+          <h2 class="has-text-centered" style="font-weight: 900; font-size: 30px;">
+            Login to Instagram
+          </h2>
+        </div>
+      </div>
+      <div class="level">
+        <div class="level-item">
+          <form>
+            <p style="display: none; padding-bottom: 1em" id="yd-login-error" class="has-text-centered has-text-danger">
+
+            </p>
+            <div class="field">
+              <label class="label is-small">Phone number, username, or email</label>
+              <div class="control">
+                <input class="input" id="username" type="text" name="login">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label is-small">Password</label>
+              <div class="control">
+                <input class="input" id="password" type="password" name="password">
+              </div>
+            </div>
+            <div class="field mt" style="display: none">
+              <label class="checkbox">
+                <input type="checkbox" name="allow-commenting" id="yd-auth-remember-me" style="margin-right: .6em;">
+                Remember me
+              </label>
+            </div>
+            <button type="submit" class="button is-black is-fullwidth yd-login-btn">Log In & Start</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="yd-connect-screen" style="display: none;">
+    <div class="container is-flex" style="justify-content: center; margin-top: -20px;">
+      <div class="level-left yd-container-level">
+        <div class="content" style="padding-right: 1.5em">
+          <h2>
+            Connect!
+          </h2>
+          <p class="has-text-centered">
+            <ol style="margin-left: 1em">
+              <li>Open Instagram on your device.</li>
+              <li>Select <strong>"This Was Me"</strong> to confirm an attempt.</li>
+              <li>Click the <strong>"Next"</strong> button bellow.</li>
+            </ol>
+          </p>
+          <a class="button is-black yd-next-btn">Next</a>
+        </div>
+      </div>
+      <div class="level-right yd-container-level">
+        <img src="./instagram-cnf.png" width="190" alt="instagram">
+      </div>
+    </div>
+  </div>
+
+
+  <div id="yd-profile-data" style="display: none;">
+    <div style="width: 400px" class="container flex flex-col items-center">
+      <div class="level content flex flex-row items-center justify-start w-full">
+        <h4 id="yd-username" class="yd-username ml"></h4>
+        <div class="flex-fill"></div>
+        <button id="yd-logout-btn" class="button is-black" type="button">
+          Logout
+        </button>
+      </div>
+      <p style="display: none; padding-bottom: 1em" id="yd-broadcast-error" class="has-text-centered has-text-danger"></p>
+      <div id="yd-stream-loader" class="loader" style="height: 3.5em; width: 3.5em; margin-bottom: 5%"></div>
+      <div id="yd-create-stream-container" style="display: none;">
+        <div class="flex flex-col items-center justify-center mb w-full">
+          <button id="yd-create-stream-btn" class="button is-black" type="button">
+            Create new broadcast
+          </button>
+        </div>
+      </div>
+      <div id="yt-stream-credentials" style="display: none">
+        <div id="yt-stream-status">NOT STARTED</div>
+        <div class="level">
+          <div class="level-item">
+            <form>
+              <div class="field">
+                <label class="label is-small" for="rtmp-url">RTMP URL</label>
+                <div class="control">
+                  <input style="padding-right: 30px" readonly class="input" id="rtmp-url" type="text" name="rtmp-url">
+                  <img class="yd-cc-icon" id="yd-copy-rtmp-url" src="https://img.icons8.com/material/24/000000/copy.png">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label is-small" for="stream-key">Stream key</label>
+                <div class="control">
+                  <input style="padding-right: 30px" readonly class="input" id="stream-key" type="password" name="stream-key">
+                  <img class="yd-cc-icon" id="yd-copy-stream-key" src="https://img.icons8.com/material/24/000000/copy.png">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="level">
+          <div class="level-item">
+            <div class="box is-shadowless" style="background-color: gainsboro; padding: 0.75em;">
+              Copy the RTMP URL and Stream Key above and paste them into your
+              broadcasting software <strong>each time you want to stream</strong>.
+            </div>
+          </div>
+        </div>
+        <div id="yd-start-stream-container">
+          <div class="flex flex-col items-center justify-center mb w-full">
+            <button id="yd-start-stream-btn" class="button is-black" type="button">
+              Start broadcast
+            </button>
+            <div class="field mt" style="display: none">
+              <label class="checkbox">
+                <input type="checkbox" checked name="send-notification" id="yd-send-notification" style="margin-right: .6em;">
+                Send notification
+              </label>
+            </div>
+            <div class="field mt">
+              <label class="checkbox">
+                <input type="checkbox" checked name="allow-commenting" id="yd-allow-commenting" style="margin-right: .6em;">
+                Allow commenting
+              </label>
+            </div>
+          </div>
+        </div>
+        <div id="yd-stop-stream-container" style="display: none;">
+          <div class="flex flex-col items-center justify-center mb w-full">
+            <button id="yd-stop-stream-btn" class="button is-black" type="button">
+              Stop broadcast
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="yd-stop-confirm" style="display: none;">
+    <div class="container">
+      <div class="level yd-container-level">
+        <div class="content">
+          <h1 style="padding-bottom: .5em" class="has-text-centered">
+            Are you sure you want to finish?
+          </h1>
+          <div class="is-flex" style="justify-content: center;">
+            <button style="margin: .2em" class="button is-medium is-black yd-confirm-logout-btn">Finish</button>
+            <button style="margin: .2em" class="button is-medium yd-cancel-logout-btn">Cancel</button>
+          </div>
+          <div class="has-text-centered" style="padding-top: 1em">
+            ⚠️Attention! Your stream will be ended.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="yd-crash-screen" style="display: none;">
+    <div class="container">
+      <div class="level yd-container-level">
+        <div class="content">
+          <div style="text-align: center;">
+            <img class="yd-image-sad" src="yd-yellow-duck-1.png" alt="😢" />
+          </div>
+          <h2 class="has-text-centered" style="font-weight: 900;font-size: 36px;">
+            Oops! An error has occured.
+          </h2>
+          <p class="has-text-centered" style="font-size: 20px;">
+            Please, restart the application to get latest update.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer yd-footer">
+    <div class="level is-flex">
+      <div class="level-left">
+        <span class="has-text-grey-lighter">
+          bluenation.studio, <span id="yd-year">2022</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="notification is-success yd-cc-notif">
+    ✅Copied to your clipboard.
+  </div>
+
+  <script src="src/scripts/pages/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+::-moz-selection {
+  background: rgba(0, 0, 0, 1);
+  color: #fff;
+}
+
+::selection {
+  background: rgba(0, 0, 0, 1);
+  color: #fff;
+}
+
+body {
+  font-size: 13px;
+}
+
+form {
+  width: 100%;
+}
+
+.level {
+  display: block;
+}
+
+.yd-container-level {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.yd-footer {
+  padding: 1rem;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.yd-cc-icon {
+  position: absolute;
+  right: 5px;
+  top: 9px;
+  width: 20px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.yd-cc-notif {
+  background-color: #000;
+  text-align: left;
+  padding: .5em 1em;
+  width: 200px;
+  margin: 0 auto;
+  left: 15px;
+  position: absolute;
+  right: 15px;
+  bottom: 50px;
+  display: none;
+  cursor: default;
+}
+
+.is-success {
+  background: #000 !important;
+}
+
+.yd-username {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+
+  padding-right: 10px;
+  /* Overriding Bulma default margin */
+  margin-bottom: 0px !important;
+}
+
+.yd-profile {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+}
+
+.yd-footer-link-hello {
+  color: #dbdbdb;
+  border-bottom: 1px solid;
+  transition: all .5s;
+}
+
+.yd-footer-link-hello:hover {
+  color: #000;
+}
+
+.yd-footer .level-right .has-text-grey-lighter{
+  margin-left: 10px;
+}
+
+.clickable { cursor: pointer; }
+
+.m0 { margin: 0 !important; }
+.ml { margin-left: 8px !important; }
+.mr { margin-right: 8px !important; }
+.mt { margin-top: 8px !important; }
+.mb { margin-bottom: 8px !important; }
+
+.flex { display: flex }
+.flex-fill { flex: 1 !important }
+.flex-wrap { flex-wrap: wrap !important }
+.flex-row { flex-direction: row !important }
+.flex-col { flex-direction: column !important }
+
+.items-center { align-items: center !important }
+.items-start { align-items: flex-start !important }
+.items-end { align-items: flex-end !important }
+
+.justify-center { justify-content: center !important }
+.justify-start { justify-content: flex-start !important }
+.justify-end { justify-content: flex-end !important }
+.justify-self-end { justify-self: flex-end !important }
+
+.w-full { width: 100% !important }
+.w-max-full { max-width: 100% !important }
+.w-max-1\/5 { max-width: 20vw !important }
+
+.overflow-wrap {
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+}
+
+.pulse {
+  background: green;
+  border-radius: 50%;
+  display: none;
+  margin: 10px;
+  height: 20px;
+  width: 20px;
+
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+
+  30% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+#yt-stream-status {
+  background: rgba(239, 68, 68, 1);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: white;
+
+  position: fixed;
+  right: 8px;
+  top: 8px;
+}
+
+#yt-stream-status.live {
+  background: rgba(16, 185, 129, 1);
+
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 1);
+  animation: pulse 4s infinite;
+  transform: scale(1);
+}

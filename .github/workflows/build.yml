@@ -1,0 +1,15 @@
+name: Build
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: yarn make
+      - uses: actions/upload-artifact@v2.3.1
+        with:
+          name: blueduck
+          path: out/make/squirrel.windows/x64/blueduck-0.3.0 Setup.exe
