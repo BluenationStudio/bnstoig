@@ -1,13 +1,13 @@
-const InstaError = require('./InstaError')
-const instapi = require('./client')
-const log = require('electron-log')
+import InstaError from './InstaError';
+import instapi from './client';
+import log from 'electron-log';
 
 /**
  * @param {string} broadcastId
  * @param {string} message
  * @return {Promise<void>}
  */
-async function create(broadcastId, message) {
+async function create(broadcastId: any, message: any) {
 	try {
 		const apiClient = await instapi.getApiClient();
 		await apiClient.live.comment(broadcastId, message)
@@ -20,7 +20,7 @@ async function create(broadcastId, message) {
  * @param {string} broadcastId
  * @return {Promise<void>}
  */
-async function mute(broadcastId) {
+async function mute(broadcastId: any) {
 	try {
 		const apiClient = await instapi.getApiClient();
 		await apiClient.live.muteComment(broadcastId)
@@ -33,7 +33,7 @@ async function mute(broadcastId) {
  * @param {string} broadcastId
  * @return {Promise<void>}
  */
-async function unmute(broadcastId) {
+async function unmute(broadcastId: any) {
 	try {
 		const apiClient = await instapi.getApiClient();
 		await apiClient.live.unmuteComment(broadcastId)
@@ -61,7 +61,7 @@ async function unmute(broadcastId) {
  *     }[]
  * }>}
  */
-async function getComments(broadcastId, lastCommentTs, commentsRequested) {
+async function getComments(broadcastId: any, lastCommentTs: number, commentsRequested?: undefined) {
 	try {
 		const apiClient = await instapi.getApiClient();
 		return await apiClient.live.getComment({
@@ -79,7 +79,7 @@ async function getComments(broadcastId, lastCommentTs, commentsRequested) {
  * @param {Function} onComments
  * @return {Promise<number>}
  */
-async function readComments(broadcastId, onComments) {
+async function readComments(broadcastId: any, onComments: (arg0: any) => void) {
 	let lastCommentTs = 0
 	return setInterval(async () => {
 		try {
@@ -94,4 +94,4 @@ async function readComments(broadcastId, onComments) {
 	}, 2500)
 }
 
-module.exports = { create, getComments, readComments, mute, unmute }
+export default { create, getComments, readComments, mute, unmute }

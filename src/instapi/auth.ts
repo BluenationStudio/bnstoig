@@ -1,5 +1,5 @@
-const InstaError = require('./InstaError')
-const instapi = require('./client')
+import InstaError from './InstaError';
+import instapi from './client';
 
 /**
  * @param {string} username
@@ -17,9 +17,9 @@ const instapi = require('./client')
  *  phone_number: string
  * }>}
  */
-async function login(username, password, options) {
+async function login(username: null | undefined, password: any, options: { remember: undefined; onTwoFA: (arg0: { type: string; }) => PromiseLike<{ code: any; }> | { code: any; }; onCheckpoint: (arg0: { url: any; }) => PromiseLike<{ code: any; }> | { code: any; }; }) {
     instapi.clear()
-    const apiClient = await instapi.getApiClient(username, options.remember);
+    const apiClient = await instapi.getApiClient(username);
     try {
         return await apiClient.account.login(username, password)
     } catch (error) {
@@ -52,7 +52,7 @@ async function login(username, password, options) {
             await apiClient.challenge.auto(true); // Requesting sms-code or click "It was me" button
             const { code } = await options.onCheckpoint({ url: error.url });
             try {
-                await apiClient.challenge.sendSecurityCode(code)
+                await apiClient?.challenge.sendSecurityCode(code)
             } catch (err) {
                 throw new InstaError(err)
             }
@@ -62,4 +62,4 @@ async function login(username, password, options) {
     }
 }
 
-module.exports = { login }
+export default { login }

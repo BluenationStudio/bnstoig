@@ -1,8 +1,8 @@
-const InstaError = require('./InstaError')
-const instapi = require('./client')
-const log = require('electron-log')
+import InstaError from './InstaError';
+import instapi from './client';
+import log from 'electron-log';
 
-async function create(options) {
+async function create(options: {}) {
 	log.info(`Creating broadcast ${JSON.stringify(options)}`)
 
 	try {
@@ -35,7 +35,7 @@ async function create(options) {
  * @param {boolean=} sendNotification
  * @return {Promise<{ status: string, media_id: string }>}
  */
-async function start(broadcastId, sendNotification) {
+async function start(broadcastId: number, sendNotification: any) {
 	log.info(`Starting broadcast ${JSON.stringify({ broadcastId, sendNotification })}`)
 
 	try {
@@ -61,7 +61,7 @@ async function start(broadcastId, sendNotification) {
  * @param {string} broadcastId
  * @return {Promise<void>}
  */
-async function stop(broadcastId) {
+async function stop(broadcastId: number) {
 	log.info(`Stopping broadcast ${broadcastId}`)
 
 	try {
@@ -72,4 +72,4 @@ async function stop(broadcastId) {
 	}
 }
 
-module.exports = { create, start, stop }
+export default { create, start, stop }

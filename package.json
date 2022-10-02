@@ -3,39 +3,23 @@
   "version": "0.3.0",
   "authors": "bluenation.studio",
   "description": "Gets you your RTMP Key for instagram streaming",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "MIT",
   "dependencies": {
     "app-root-dir": "^1.0.2",
     "electron-log": "^3.0.6",
     "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
-    "instagram-private-api": "^1.45.2"
+    "instagram-private-api": "^1.45.3"
   },
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start": "electron .",
+    "build": "electron-builder .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.63",
-    "@electron-forge/maker-deb": "^6.0.0-beta.63",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
-    "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron": "^16.0.7"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "blueduck"
-          }
-        }
-      ]
-    }
+	"@types/uuid": "^8.3.4",
+    "electron": "^16.0.7",
+	"typescript": "^4.7.4"
   }
 }
